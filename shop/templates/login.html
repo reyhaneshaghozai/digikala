@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">وارد شوید</h1>
+            <p class="lead fw-normal text-white-50 mb-0">ورود به ناحیه کاربری</p>
+        </div>
+    </div>
+</header>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-10">  <!-- تغییر از col.10 به col-10 -->
+            <form method="POST" action="{% url 'login' %}">  <!-- اصلاح از actions به action -->
+                {% csrf_token %}
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="username" placeholder="نام کاربری را وارد کنید">  <!-- اصلاح type از target به text -->
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="رمز خود را وارد کنید">
+                </div>
+                    <button type="submit" class="btn btn-secondary">واردشدن</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br><br>
+{% endblock %}
