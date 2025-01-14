@@ -12,7 +12,7 @@ class Cart:
 
         if product_id in self.cart:
             pass
-        else:
+        else:   
             self.cart[product_id] = {'price':str(product.price)}
 
         self.session.modified = True 
