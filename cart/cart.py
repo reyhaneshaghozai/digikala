@@ -5,14 +5,18 @@ class Cart:
         cart =self.session.get('session_key')
         if 'session_key' not in request.session: 
             cart = self.session['session_key']={}
+        self.cart = cart 
 
-            self.cart = cart 
-        def add(self,Product):
-            Product_id= str(Product.id)
+    def add(self,product):
+        product_id= str(product.id)
 
-            if Product_id in self.cart:
-                pass
-            else:
-                self.cart[Product_id] ={'price':str(Product.price)}
+        if product_id in self.cart:
+            pass
+        else:
+            self.cart[product_id] = {'price':str(product.price)}
 
-                self.session.modified = True
+        self.session.modified = True 
+    
+    def __len__(self):
+        return len(self.cart)
+        

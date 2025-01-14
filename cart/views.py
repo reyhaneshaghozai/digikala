@@ -11,11 +11,13 @@ def cart_add(request):
     cart = Cart(request)
 
     if request.POST.get('action')=='post':
-        Product_id = int(request.POST.get('Product_id'))
-        Product=get_object_or_404(Product, id= Product_id)
-        cart.add(Product=Product)
+        product_id = int(request.POST.get('product_id'))
+        product=get_object_or_404(Product, id= product_id)
+        cart.add(product=product)
 
-        response= JsonResponse({'Product name': Product.name})
+        cart_quantity = cart.__len__()
+        # response= JsonResponse({'Product name': product.name})
+        response= JsonResponse({'qty':cart_quantity })
         return response
 
 def cart_delete(request):

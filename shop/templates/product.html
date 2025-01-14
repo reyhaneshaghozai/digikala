@@ -28,22 +28,23 @@
 </div>
 <br><br><br><br><br>
 <script>
-  $(document).on('click','#add-cart', function(e){
-    e.preventDefault(); 
-    $.ajax({
-      type: 'POST',
-      url: '{% url 'cart_add' %}'
-      data:{
-        product_id: $('#add-cart').val(),
-        csrfmiddlewaretocn: '{{ csrf_token}}',
-        action:'post '
-      },
-      success: function(json){
-        console.logo(json)
-      },
-      error: function(xhr,errms,err){
-      },
-    })
+$(document).on('click','#add-cart', function(e){
+  e.preventDefault(); 
+  $.ajax({
+    type: 'POST',
+    url: '{% url 'cart_add' %}',
+    data:{
+      product_id: $('#add-cart').val(),
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+      action:'post'
+    },
+    success: function(json){
+      {% comment %} console.log(json) {% endcomment %}
+      document.getBElementById('cart_quantity').textContent = json.qty
+    },
+    error: function(xhr,errms,err){
+    },
   })
+})
 </script>
 {% endblock %}
